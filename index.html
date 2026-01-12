@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>CelebrityRise | Celebrity Booking & Management Agency</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CelebrityRise is an independent celebrity booking and talent inquiry platform for events, shows, and meet & greets.">
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {margin:0;font-family:'Montserrat',Arial,sans-serif;background:#f0f4ff;color:#333;}
+    header {background:linear-gradient(135deg,#003366,#0059b3);color:white;padding:40px 20px;text-align:center;font-size:36px;font-weight:700;letter-spacing:1px;}
+    .tagline {font-size:16px;margin-top:5px;opacity:.9;}
+    .services {display:flex;flex-wrap:wrap;justify-content:center;gap:20px;background:#0073e6;color:white;padding:15px;font-weight:600;text-transform:uppercase;font-size:14px;}
+    .tools {display:flex;flex-wrap:wrap;gap:15px;justify-content:center;padding:20px;background:white;box-shadow:0 2px 8px rgba(0,0,0,0.1);border-radius:12px;margin:20px;}
+    .tools input,.tools select {padding:12px;width:220px;border-radius:8px;border:1px solid #ccc;font-size:14px;}
+    .container {display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;padding:20px;}
+    .card {background:white;border-radius:15px;overflow:hidden;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,0.15);transition:transform 0.3s,box-shadow 0.3s;}
+    .card:hover {transform:scale(1.05);box-shadow:0 12px 25px rgba(0,0,0,0.2);}
+    .card img {width:100%;height:200px;object-fit:cover;}
+    .card h3 {text-align:center;margin:10px 0 0;color:#003366;font-size:18px;}
+    .card p {text-align:center;margin:0 0 10px;font-size:14px;color:#666;}
+    .modal {display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:999;}
+    .modal-content {background:white;max-width:500px;margin:5% auto;padding:25px;border-radius:15px;position:relative;max-height:90vh;overflow-y:auto;}
+    .modal-content img {width:100%;border-radius:12px;margin-bottom:15px;}
+    .modal-content input,.modal-content select,.modal-content textarea,.modal-content button {width:100%;padding:12px;margin:8px 0;border-radius:8px;border:1px solid #ccc;font-size:14px;}
+    .modal-content button {background:#003366;color:white;border:none;font-weight:700;cursor:pointer;transition:background 0.3s;}
+    .modal-content button:hover {background:#0059b3;}
+    .close {position:absolute;top:15px;right:20px;font-size:24px;font-weight:700;cursor:pointer;color:#333;}
+    footer {background:#003366;color:white;text-align:center;padding:20px;font-size:13px;}
+    .whatsapp {position:fixed;bottom:25px;right:25px;background:#25D366;color:white;padding:18px;border-radius:50%;font-size:24px;text-decoration:none;box-shadow:0 4px 12px rgba(0,0,0,0.2);transition:transform 0.3s;}
+    .whatsapp:hover {transform:scale(1.1);}
+    .success-msg {display:none;text-align:center;padding:15px;background:#d4edda;color:#155724;border:1px solid #c3e6cb;border-radius:10px;margin-bottom:10px;font-weight:600;}
+    @media (max-width:600px){ .container {grid-template-columns:repeat(2,1fr);} }
+  </style>
+</head>
+<body>
+
+<header>
+  CelebrityRise
+  <div class="tagline">Celebrity Booking • Management • Events • Meet & Greet</div>
+</header>
+
+<div class="services">
+  <span>Management</span>
+  <span>Booking</span>
+  <span>Events</span>
+  <span>Shows</span>
+  <span>Meet & Greet</span>
+</div>
+
+<div class="tools">
+  <input type="text" id="search" placeholder="Search celebrity...">
+  <select id="filter">
+    <option value="all">All Categories</option>
+    <option value="actor">Actors</option>
+    <option value="musician">Musicians</option>
+    <option value="sports">Sports</option>
+    <option value="media">Media</option>
+  </select>
+</div>
+
+<div class="container" id="list">
+
+<!-- ACTORS -->
+<div class="card actor" onclick="openForm('Jennifer Aniston','images/jenniferaniston.jpg')"><img src="jenniferaniston.jpg"><h3>Jennifer Aniston</h3><p>Actor</p></div>
+<div class="card actor" onclick="openForm('Brad Pitt','images/brad.jpg')"><img src="brad.jpg"><h3>Brad Pitt</h3><p>Actor</p></div>
+<div class="card actor" onclick="openForm('Leonardo DiCaprio','images/leonardo.jpg')"><img src="omemma.jpg"><h3>Leonardo DiCaprio</h3><p>Actor</p></div>
+<div class="card actor" onclick="openForm('Sandra Bullock','images/sandrabullock.jpg')"><img src="sandrabullock.jpg"><h3>Sandra Bullock</h3><p>Actor</p></div>
+<div class="card actor" onclick="openForm('Tom Cruise','images/tom.jpg')"><img src="tom.jpg"><h3>Tom Cruise</h3><p>Actor</p></div>
+<div class="card actor" onclick="openForm('Will Smith','images/will.jpg')"><img src="smith.jpg"><h3>Will Smith</h3><p>Actor</p></div>
+<div class="card actor" onclick="openForm('Scarlett Johansson','images/scarlett.jpg')"><img src="scarlet.jpg"><h3>Scarlett Johansson</h3><p>Actor</p></div>
+<div class="card actor" onclick="openForm('Dwayne Johnson','images/dwayne.jpg')"><img src="rock.jpg"><h3>Dwayne Johnson</h3><p>Actor</p></div>
+
+<!-- MUSICIANS -->
+<div class="card musician" onclick="openForm('Taylor Swift','images/taylor.jpg')"><img src="taylorswift1.jpg"><h3>Taylor Swift</h3><p>Singer</p></div>
+<div class="card musician" onclick="openForm('Beyoncé','images/beyonce.jpg')"><img src="beyonce.jpg"><h3>Beyoncé</h3><p>Singer</p></div>
+<div class="card musician" onclick="openForm('Rihanna','images/rihanna.jpg')"><img src="rihanna.jpg"><h3>Rihanna</h3><p>Singer</p></div>
+<div class="card musician" onclick="openForm('Ariana Grande','images/ariana.jpg')"><img src="ariana.jpg"><h3>Ariana Grande</h3><p>Singer</p></div>
+<div class="card musician" onclick="openForm('Justin Bieber','images/justinb.jpg')"><img src="justin.jpg"><h3>Justin Bieber</h3><p>Singer</p></div>
+<div class="card musician" onclick="openForm('Ed Sheeran','images/ed.jpg')"><img src="ed.jpg"><h3>Ed Sheeran</h3><p>Singer</p></div>
+<div class="card musician" onclick="openForm('Drake','images/drake.jpg')"><img src="drake.jpg"><h3>Drake</h3><p>Artist</p></div>
+<div class="card musician" onclick="openForm('Lady Gaga','images/ladygaga.jpg')"><img src="gaga.jpg"><h3>Lady Gaga</h3><p>Singer</p></div>
+<div class="card musician" onclick="openForm('George Strait','images/george.jpg')"><img src="george.jpg"><h3>George Strait</h3><p>Country Artist</p></div>
+<div class="card musician" onclick="openForm('Miranda Lambert','images/miranda.jpg')"><img src="miranda.jpg"><h3>Miranda Lambert</h3><p>Country Artist</p></div>
+<div class="card musician" onclick="openForm('Garth Brooks','images/garth.jpg')"><img src="brook.jpg"><h3>Garth Brooks</h3><p>Country Artist</p></div>
+<div class="card musician" onclick="openForm('Carrie Underwood','images/carrie.jpg')"><img src="monica.jpg"><h3>Carrie Underwood</h3><p>Country Artist</p></div>
+<div class="card musician" onclick="openForm('Luke Bryan','images/luke.jpg')"><img src="bryan.jpg"><h3>Luke Bryan</h3><p>Country Artist</p></div>
+<div class="card musician" onclick="openForm('Morgan Wallen','images/morgan.jpg')"><img src="wallen.jpg"><h3>Morgan Wallen</h3><p>Country Artist</p></div>
+
+<!-- MEDIA -->
+<div class="card media" onclick="openForm('Oprah Winfrey','images/oprah.jpg')"><img src="oprah.jpg"><h3>Oprah Winfrey</h3><p>Media Personality</p></div>
+<div class="card media" onclick="openForm('Kim Kardashian','images/kim.jpg')"><img src="kim.jpg"><h3>Kim Kardashian</h3><p>Media Personality</p></div>
+<div class="card media" onclick="openForm('Kevin Hart','images/kevin.jpg')"><img src="hart.jpg"><h3>Kevin Hart</h3><p>Comedian</p></div>
+
+<!-- SPORTS -->
+<div class="card sports" onclick="openForm('LeBron James','images/lebron.jpg')"><img src="james.jpg"><h3>LeBron James</h3><p>Athlete</p></div>
+<div class="card sports" onclick="openForm('Serena Williams','images/serena.jpg')"><img src="selena.jpg"><h3>Serena Williams</h3><p>Athlete</p></div>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <div class="close" onclick="closeForm()">✖</div>
+    <h2 id="cname"></h2>
+    <img id="cimg">
+    <div class="success-msg" id="success-msg">✅ Booking request sent successfully!</div>
+
+    <form name="celebrity-booking" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="bookingForm">
+      <input type="hidden" name="form-name" value="celebrity-booking">
+      <p hidden><input name="bot-field"></p>
+      <input type="hidden" name="Celebrity" id="cinput">
+
+      <input name="Full Name" placeholder="Full Name" required>
+      <input name="Residential Address" placeholder="Residential Address" required>
+      <input name="Email" type="email" placeholder="Email Address" required>
+      <input name="WhatsApp Number" placeholder="WhatsApp Number" required>
+      <input name="Phone Number" placeholder="Phone Number" required>
+
+      <select name="Event Type" required>
+        <option value="">Select Event Type</option>
+        <option>Private Event</option>
+        <option>Corporate Event</option>
+        <option>Concert / Show</option>
+        <option>Wedding</option>
+        <option>Meet & Greet</option>
+        <option>Brand Endorsement</option>
+      </select>
+
+      <input name="Event Date" type="date" required>
+      <input name="Event Location" placeholder="Event Location (City & Country)" required>
+
+      <select name="Estimated Budget" required>
+        <option value="">Estimated Budget</option>
+        <option>$5,000 – $10,000</option>
+        <option>$10,000 – $25,000</option>
+        <option>$25,000 – $50,000</option>
+        <option>$50,000 – $100,000</option>
+        <option>$100,000+</option>
+      </select>
+
+      <textarea name="Additional Details" rows="4" placeholder="Additional event details (optional)"></textarea>
+
+      <button type="submit">Submit Booking Request</button>
+    </form>
+  </div>
+</div>
+
+<a class="whatsapp" href="https://wa.me/+12293572677" target="_blank">💬</a>
+
+<footer>© 2026 CelebrityRise | Independent Celebrity Booking Platform</footer>
+
+<script>
+function openForm(name,img){
+  document.getElementById("cname").innerText=name;
+  document.getElementById("cimg").src=img;
+  document.getElementById("cinput").value=name;
+  document.getElementById("success-msg").style.display="none";
+  document.getElementById("bookingForm").style.display="block";
+  document.getElementById("modal").style.display="block";
+}
+function closeForm(){
+  document.getElementById("modal").style.display="none";
+}
+
+document.getElementById("search").onkeyup=function(){
+  let v=this.value.toLowerCase();
+  document.querySelectorAll(".card").forEach(c=>{
+    c.style.display=c.innerText.toLowerCase().includes(v)?"block":"none";
+  });
+};
+
+document.getElementById("filter").onchange=function(){
+  let v=this.value;
+  document.querySelectorAll(".card").forEach(c=>{
+    c.style.display=(v=="all"||c.classList.contains(v))?"block":"none";
+  });
+};
+
+// Netlify form submission with success message
+const form=document.getElementById("bookingForm");
+form.addEventListener("submit", function(e){
+  e.preventDefault();
+  const data = new FormData(form);
+
+  fetch("/", {method:"POST", body:data})
+  .then(() => {
+    document.getElementById("bookingForm").style.display="none";
+    document.getElementById("success-msg").style.display="block";
+    form.reset();
+  })
+  .catch(err => alert("Submission failed: "+err));
+});
+</script>
+
+</body>
+</html>
